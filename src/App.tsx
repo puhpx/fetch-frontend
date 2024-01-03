@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
-import LoginForm from './components/LoginForm';
+import HomePage from './pages/HomePage';
 
 const App: React.FC = () => {
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
-    const handleLogin = (userCredentials: { name: string, email: string }) => {
-        // make an API call to the login endpoint
+    // This will be called when the user successfully logs in
+    const handleLoginSuccess = () => {
         setIsLoggedIn(true);
     };
 
     return (
         <div>
             {!isLoggedIn ? (
-                <LoginForm onSubmit={handleLogin} />
-            ) : <h4>Welcome</h4> //need to be replaced
-            }
+                <HomePage onLogin={handleLoginSuccess} />
+            ) : (
+                <h4>Redirect to serach page</h4> // Users should be brought to the search page
+            )}
         </div>
     );
 };
