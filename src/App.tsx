@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import LoginForm from './components/LoginForm';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App: React.FC = () => {
+    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+
+    const handleLogin = (userCredentials: { name: string, email: string }) => {
+        // make an API call to the login endpoint
+        setIsLoggedIn(true);
+    };
+
+    return (
+        <div>
+            {!isLoggedIn ? (
+                <LoginForm onSubmit={handleLogin} />
+            ) : <h4>Welcome</h4> //need to be replaced
+            }
+        </div>
+    );
+};
 
 export default App;
