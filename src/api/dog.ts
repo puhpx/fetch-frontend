@@ -20,12 +20,12 @@ export const searchDogs = async (params: SearchParams) => {
 
 // Function to get breeds
 export const getBreeds = async () => {
-  return axios.get(`${API_URL}/dogs/breeds`);
+  return axios.get(`${API_URL}/breeds`, { withCredentials: true });
 };
 
 // Function to fetch specific dogs by IDs
 export const fetchDogsByIds = async (dogIds: string[]) => {
-  return axios.post(`${API_URL}/dogs`, dogIds, { withCredentials: true });
+  return axios.post(`${API_URL}`, dogIds, { withCredentials: true });
 };
 
 // Interface for the match response
