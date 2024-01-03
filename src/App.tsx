@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import HomePage from './pages/HomePage';
+import SearchPage from './pages/SearchPage';
 
 const App: React.FC = () => {
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
@@ -14,7 +15,7 @@ const App: React.FC = () => {
             {!isLoggedIn ? (
                 <HomePage onLogin={handleLoginSuccess} />
             ) : (
-                <h4>Redirect to serach page</h4> // Users should be brought to the search page
+                <SearchPage /> // Users should be brought to the search page
             )}
         </div>
     );
