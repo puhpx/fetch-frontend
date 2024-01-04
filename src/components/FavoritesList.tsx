@@ -1,6 +1,7 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useEffect, useState } from 'react';
 import { fetchDogsByIds } from '../api/dog';
-import DogCard from './DogCard'; // Adjust the import path as necessary
+import DogCard from './DogCard';
 
 interface FavoritesListProps {
     favoriteIds: string[];
@@ -25,7 +26,7 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ favoriteIds }) => {
     }, [favoriteIds]);
 
     return (
-        <div>
+        <div className="d-flex flex-wrap">
             {favoriteDogs.map(dog => (
                 <DogCard
                   key={dog.id}

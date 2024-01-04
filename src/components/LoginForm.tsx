@@ -25,9 +25,9 @@ const LoginForm: React.FC<LoginFormProps> = ({onSubmit}) => {
   return (
     <Container className="mt-5">
       <Row className="justify-content-md-center">
-        <Col md={4}>
+        <Col xs={10} sm={10} md={10} lg={10} xl={10} className="justify-content-md-center">
           <Form onSubmit={handleSubmit}>
-            <Form.Group>
+            <Form.Group className="mb-3">
                 <Form.Label>Name</Form.Label>
                 <Form.Control
                     type="text"
@@ -36,7 +36,7 @@ const LoginForm: React.FC<LoginFormProps> = ({onSubmit}) => {
                     required
                 />
             </Form.Group>
-            <Form.Group>
+            <Form.Group className="mb-3">
                 <Form.Label>Email</Form.Label>
                 <Form.Control
                     type="email"
@@ -45,7 +45,14 @@ const LoginForm: React.FC<LoginFormProps> = ({onSubmit}) => {
                     required
                 />
             </Form.Group>
-            <Button variant="primary" type="submit">Login</Button>
+            <Button
+              variant="primary"
+              type="submit"
+              className="mt-2 btn-lg"
+              style={{ backgroundColor: "#2f0c38", color: '#f8a619' }}
+            >
+              Login
+            </Button>
         </Form>
       </Col>
     </Row>

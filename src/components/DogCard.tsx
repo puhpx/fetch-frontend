@@ -1,4 +1,5 @@
-import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState } from 'react';
 import { Card } from 'react-bootstrap';
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 
@@ -19,23 +20,43 @@ interface DogCardProps {
 }
 
 const DogCard: React.FC<DogCardProps> = ({ dog, isLiked, onLike, showHeart = true }) => {
+  const [hover, setHover] = useState(false);
+
   const handleLikeClick = () => onLike(dog.id);
 
+  const cardStyle = {
+    width: '18rem',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+    backgroundColor: '#f8f9fa',
+    transform: hover ? 'translateY(-5px)' : 'none',
+    transition: 'transform 0.3s ease-in-out'
+  };
+
   return (
-    <Card style={{ width: '18rem' }}>
-        <Card.Img variant="top" src={dog.img} />
-        <Card.Body>
-            <Card.Title>{dog.name}</Card.Title>
-            <Card.Text>
-                Age: {dog.age} <br />
-                Breed: {dog.breed}
-            </Card.Text>
-            {showHeart && (
-              <span onClick={handleLikeClick} style={{ cursor: 'pointer' }}>
-                {isLiked ? <MdFavorite style={{ color: 'red' }} /> : <MdFavoriteBorder />}
-              </span>
-            )}
-        </Card.Body>
+      <Card
+        className="m-2"
+        style={cardStyle}
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+      >
+      <Card.Img
+        variant="top"
+        src={dog.img}
+        className="img-fluid"
+        style={{ height: '200px', objectFit: 'cover' }}
+      />
+      <Card.Body>
+        <Card.Title>{dog.name}</Card.Title>
+        <Card.Text>
+          Age: {dog.age} <br />
+          Breed: {dog.breed}
+        </Card.Text>
+        {showHeart && (
+          <span onClick={handleLikeClick} style={{ cursor: 'pointer' }}>
+            {isLiked ? <MdFavorite style={{ color: 'red', fontSize: '30px' }} /> : <MdFavoriteBorder style={{ fontSize: '30px' }} />}
+          </span>
+        )}
+      </Card.Body>
     </Card>
   );
 };

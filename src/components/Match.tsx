@@ -27,12 +27,12 @@ const Match: React.FC<MatchProps> = ({ favoriteIds }) => {
     }, [favoriteIds]);
 
     if (!matchedDog) {
-        return <div>Loading matched dog...</div>;
+        return <div>Please add some of your favorite dogs to find a match.</div>;
     }
 
     return (
         <div>
-            <h3>Matched Dog</h3>
+            <h3>✔️✔️✔️MATCH DOG </h3>
             <DogCard
               key={matchedDog.id}
               dog={matchedDog}

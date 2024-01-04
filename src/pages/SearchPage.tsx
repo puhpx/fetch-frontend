@@ -1,8 +1,10 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useEffect, useState } from 'react';
 import { fetchDogsByIds, getBreeds, searchDogs } from '../api/dog';
 import DogList from '../components/DogList';
 import FavoritesList from '../components/FavoritesList';
 import Match from '../components/Match';
+
 
 const SearchPage: React.FC = () => {
     const [breeds, setBreeds] = useState<string[]>([]);
@@ -83,24 +85,42 @@ const SearchPage: React.FC = () => {
 
 
     return (
-        <div>
-            <button onClick={() => setShowFavorites(!showFavorites)}>
+        <div className="container">
+          <div className="mb-4 mt-4">
+            <img src="/Fetch_Rewards_Logo.jpeg" alt="Fetch Logo" className="logo img-fluid mb-4 w-50" />
+          </div>
+          <div className="my-3">
+            <button
+              className="btn btn-primary btn-lg mt-2 mb-4"
+              onClick={() => setShowFavorites(!showFavorites)}
+              style={{ backgroundColor: "#2f0c38", color: '#f8a619' }}
+            >
                 {showFavorites ? 'Back to Search' : 'Show Favorites'}
             </button>
 
             {showFavorites ? (
               <>
-                <FavoritesList favoriteIds={favorites} />
-                <Match favoriteIds={favorites} />
+                <Match favoriteIds={favorites}/>
+                <div style={{ marginTop: '3.5rem' }}>
+                  <h3>⬇️⬇️❤️❤️❤️ Your favorite dogs 🐶🐶🐶⬇️⬇️</h3>
+                  <FavoritesList favoriteIds={favorites} />
+                </div>
               </>
             ) : (
               <>
-              <select value={selectedBreed} onChange={handleBreedChange}>
-                  <option value="">All Breeds</option>
-                  {breeds.map(breed => (
-                      <option key={breed} value={breed}>{breed}</option>
-                  ))}
-              </select>
+                <div className="mb-3">
+                  <select
+                    className="form-select"
+                    value={selectedBreed}
+                    onChange={handleBreedChange}
+                    style={{ width: '250px' }}
+                  >
+                    <option value="">All Breeds</option>
+                    {breeds.map(breed => (
+                        <option key={breed} value={breed}>{breed}</option>
+                    ))}
+                  </select>
+                </div>
 
               {selectedBreed === '' && (
                   <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value as 'asc' | 'desc')}>
@@ -111,14 +131,28 @@ const SearchPage: React.FC = () => {
 
               <DogList dogs={dogs} favorites={favorites} onLike={handleLike} />
 
-              <button onClick={handlePreviousPage} disabled={currentPage === 0}>Previous</button>
-              <span>Page {currentPage + 1} of {Math.ceil(totalResults / pageSize)}</span>
-              <button onClick={handleNextPage} disabled={currentPage >= Math.ceil(totalResults / pageSize) - 1}>Next</button>
+              <div className="d-flex justify-content-center align-items-center mt-4 mb-4">
+                <button
+                  className="btn btn-secondary me-2"
+                  onClick={handlePreviousPage}
+                  disabled={currentPage === 0}
+                  style={{ width: '100px', backgroundColor: "#2f0c38", color: '#f8a619' }}
+                >
+                  Previous
+                </button>
+                <span className="me-2">Page {currentPage + 1} of {Math.ceil(totalResults / pageSize)}</span>
+                <button
+                  className="btn btn-secondary"
+                  onClick={handleNextPage}
+                  disabled={currentPage >= Math.ceil(totalResults / pageSize) - 1}
+                  style={{ width: '100px', backgroundColor: "#2f0c38", color: '#f8a619' }}
+                >
+                  Next
+                </button>
+              </div>
             </>
-            )}
-
-
-
+          )}
+          </div>
         </div>
     );
 };
