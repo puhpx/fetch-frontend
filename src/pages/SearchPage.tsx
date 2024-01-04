@@ -9,6 +9,7 @@ const SearchPage: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const [totalResults, setTotalResults] = useState(0);
     const pageSize = 25;
+    const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
 
 
     useEffect(() => {
@@ -35,7 +36,7 @@ const SearchPage: React.FC = () => {
                   breeds: selectedBreed ? [selectedBreed] : [],
                   size: pageSize,
                   from: currentPage * pageSize,
-                  sort: 'breed:asc'
+                  sort: `breed:${sortOrder}`
                 };
                 const searchResponse = await searchDogs(searchParams);
                 const dogIds = searchResponse.data.resultIds;
@@ -50,7 +51,7 @@ const SearchPage: React.FC = () => {
         if (breeds.length > 0) {
             fetchDogs();
         }
-    }, [breeds, selectedBreed, currentPage]);
+    }, [breeds, selectedBreed, currentPage, sortOrder]);
 
     const handleBreedChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedBreed(event.target.value);
@@ -76,6 +77,13 @@ const SearchPage: React.FC = () => {
                     <option key={breed} value={breed}>{breed}</option>
                 ))}
             </select>
+
+            {selectedBreed === '' && (
+                <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value as 'asc' | 'desc')}>
+                    <option value="asc">Ascending</option>
+                    <option value="desc">Descending</option>
+                </select>
+            )}
 
             <DogList dogs={dogs} />
 
