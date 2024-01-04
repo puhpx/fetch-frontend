@@ -1,46 +1,78 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Fetch Dog Lover App
 
-## Available Scripts
+## Overview
+Fetch Dog Lover is an application designed for dog lovers looking to adopt a dog from shelter homes. This web application allows users to search through a database of shelter dogs, filter them by breed, and select favorites to generate a match for adoption.
 
-In the project directory, you can run:
+## Features
+- User authentication using name and email.
+- Filter results by dog breed.
+- Pagination and sorting of search results.
+- Displaying detailed information for each dog.
+- Functionality to select and view favorite dogs.
+- Generate a match for adoption using the favorites list.
 
-### `npm start`
+## Technologies Used
+- [React](https://reactjs.org/) ![React Icon](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white)
+- [TypeScript](https://www.typescriptlang.org/) ![TypeScript Icon](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+- [Bootstrap](https://getbootstrap.com/) ![Bootstrap Icon](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
+- [React Testing Library](https://testing-library.com/react/) ![RTL Icon](https://img.shields.io/badge/React%20Testing%20Library-E33332?style=for-the-badge&logo=testing-library&logoColor=white)
+- [Jest](https://jestjs.io/) ![Jest Icon](https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white)
+- [Axios](https://axios-http.com/) ![Axios Icon](https://img.shields.io/badge/Axios-0095D5?style=for-the-badge&logo=axios&logoColor=white)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Getting Started
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Prerequisites
+What things you need to install the software and how to install them:
 
-### `npm test`
+- [Node.js](https://nodejs.org/)
+- [npm](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Installing
+A step-by-step series of examples that tell you how to get a development environment running:
 
-### `npm run build`
+1. Clone the repository:
+   ```sh
+   git clone [your-repo-link]
+   ```
+2. Navigate to the project directory:
+   ```sh
+   cd fetch-frontend-exercise
+   ```
+3. Install dependencies:
+   ```sh
+   npm install
+   ```
+   or if you're using Yarn:
+   ```sh
+   yarn install
+   ```
+4. Start the development server:
+   ```sh
+   npm start
+   ```
+   or with Yarn:
+   ```sh
+   yarn start
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Running the Tests
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```sh
+npm test
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+or with Yarn:
 
-### `npm run eject`
+```sh
+yarn test
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Live Demo
+The live demo of the app can be accessed at [Heroku](https://fetch-dog-lover-06d70c7542b5.herokuapp.com/).
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Demo Login Credentials
+You can use the following credentials for demo purposes:
+- **Name:** `demo`
+- **Email:** `demo@fetchrewards.com`
