@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { fetchDogsByIds, getBreeds, searchDogs } from '../api/dog';
 import DogList from '../components/DogList';
+import FavoritesList from '../components/FavoritesList';
 
 const SearchPage: React.FC = () => {
     const [breeds, setBreeds] = useState<string[]>([]);
@@ -10,6 +11,8 @@ const SearchPage: React.FC = () => {
     const [totalResults, setTotalResults] = useState(0);
     const pageSize = 25;
     const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
+    const [favorites, setFavorites] = useState<string[]>([]);
+    const [showFavorites, setShowFavorites] = useState(false);
 
 
     useEffect(() => {
@@ -69,27 +72,49 @@ const SearchPage: React.FC = () => {
         }
     };
 
+    const handleLike = (dogId: string) => {
+      setFavorites(prevFavorites => {
+          return prevFavorites.includes(dogId)
+              ? prevFavorites.filter(id => id !== dogId)
+              : [...prevFavorites, dogId];
+      });
+    };
+
+
     return (
         <div>
-            <select value={selectedBreed} onChange={handleBreedChange}>
-                <option value="">All Breeds</option>
-                {breeds.map(breed => (
-                    <option key={breed} value={breed}>{breed}</option>
-                ))}
-            </select>
+            <button onClick={() => setShowFavorites(!showFavorites)}>
+                {showFavorites ? 'Back to Search' : 'Show Favorites'}
+            </button>
 
-            {selectedBreed === '' && (
-                <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value as 'asc' | 'desc')}>
-                    <option value="asc">Ascending</option>
-                    <option value="desc">Descending</option>
-                </select>
+            {showFavorites ? (
+                <FavoritesList favoriteIds={favorites} />
+            ) : (
+              <>
+              <select value={selectedBreed} onChange={handleBreedChange}>
+                  <option value="">All Breeds</option>
+                  {breeds.map(breed => (
+                      <option key={breed} value={breed}>{breed}</option>
+                  ))}
+              </select>
+
+              {selectedBreed === '' && (
+                  <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value as 'asc' | 'desc')}>
+                      <option value="asc">Ascending</option>
+                      <option value="desc">Descending</option>
+                  </select>
+              )}
+
+              <DogList dogs={dogs} favorites={favorites} onLike={handleLike} />
+
+              <button onClick={handlePreviousPage} disabled={currentPage === 0}>Previous</button>
+              <span>Page {currentPage + 1} of {Math.ceil(totalResults / pageSize)}</span>
+              <button onClick={handleNextPage} disabled={currentPage >= Math.ceil(totalResults / pageSize) - 1}>Next</button>
+            </>
             )}
 
-            <DogList dogs={dogs} />
 
-            <button onClick={handlePreviousPage} disabled={currentPage === 0}>Previous</button>
-            <span>Page {currentPage + 1} of {Math.ceil(totalResults / pageSize)}</span>
-            <button onClick={handleNextPage} disabled={currentPage >= Math.ceil(totalResults / pageSize) - 1}>Next</button>
+
         </div>
     );
 };

@@ -1,4 +1,6 @@
+import React from 'react';
 import { Card } from 'react-bootstrap';
+import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 
 interface Dog {
   id: string;
@@ -11,21 +13,28 @@ interface Dog {
 
 interface DogCardProps {
   dog: Dog;
+  isLiked: boolean;
+  onLike: (dogId: string) => void;
 }
 
-const DogCard: React.FC<DogCardProps> = ({ dog }) => {
-    return (
-        <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={dog.img} />
-            <Card.Body>
-                <Card.Title>{dog.name}</Card.Title>
-                <Card.Text>
-                    Age: {dog.age} <br />
-                    Breed: {dog.breed}
-                </Card.Text>
-            </Card.Body>
-        </Card>
-    );
+const DogCard: React.FC<DogCardProps> = ({ dog, isLiked, onLike }) => {
+  const handleLikeClick = () => onLike(dog.id);
+
+  return (
+    <Card style={{ width: '18rem' }}>
+        <Card.Img variant="top" src={dog.img} />
+        <Card.Body>
+            <Card.Title>{dog.name}</Card.Title>
+            <Card.Text>
+                Age: {dog.age} <br />
+                Breed: {dog.breed}
+            </Card.Text>
+            <span onClick={handleLikeClick} style={{ cursor: 'pointer' }}>
+                {isLiked ? <MdFavorite style={{ color: 'red' }} /> : <MdFavoriteBorder />}
+            </span>
+        </Card.Body>
+    </Card>
+  );
 };
 
 export default DogCard;

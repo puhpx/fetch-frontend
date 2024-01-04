@@ -1,3 +1,4 @@
+import React from 'react';
 import DogCard from './DogCard';
 
 interface Dog {
@@ -11,14 +12,23 @@ interface Dog {
 
 interface DogListProps {
   dogs: Dog[];
+  favorites: string[];
+  onLike: (dogId: string) => void;
 }
 
-const DogList: React.FC<DogListProps> = ({ dogs }) => {
-    return (
-        <div className="d-flex flex-wrap">
-            {dogs.map(dog => <DogCard key={dog.id} dog={dog} />)}
-        </div>
-    );
+const DogList: React.FC<DogListProps> = ({ dogs, favorites, onLike }) => {
+  return (
+    <div className="d-flex flex-wrap">
+      {dogs.map(dog => (
+          <DogCard
+              key={dog.id}
+              dog={dog}
+              isLiked={favorites.includes(dog.id)}
+              onLike={onLike}
+          />
+      ))}
+    </div>
+  );
 };
 
 export default DogList;
