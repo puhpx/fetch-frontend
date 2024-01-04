@@ -30,10 +30,11 @@ export const fetchDogsByIds = async (dogIds: string[]) => {
 
 // Interface for the match response
 interface Match {
+  data: any;
   match: string;
 }
 
 // Function to get a match
 export const getMatch = async (dogIds: string[]): Promise<Match> => {
-  return axios.post(`${API_URL}/dogs/match`, dogIds, { withCredentials: true });
+  return axios.post(`${API_URL}/match`, dogIds, { withCredentials: true });
 };

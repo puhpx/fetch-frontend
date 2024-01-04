@@ -27,7 +27,13 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ favoriteIds }) => {
     return (
         <div>
             {favoriteDogs.map(dog => (
-                <DogCard key={dog.id} dog={dog} isLiked={true} onLike={() => {}} />
+                <DogCard
+                  key={dog.id}
+                  dog={dog}
+                  isLiked={true}
+                  onLike={() => {}}
+                  showHeart={false}
+                />
             ))}
         </div>
     );

@@ -15,9 +15,10 @@ interface DogCardProps {
   dog: Dog;
   isLiked: boolean;
   onLike: (dogId: string) => void;
+  showHeart?: boolean;
 }
 
-const DogCard: React.FC<DogCardProps> = ({ dog, isLiked, onLike }) => {
+const DogCard: React.FC<DogCardProps> = ({ dog, isLiked, onLike, showHeart = true }) => {
   const handleLikeClick = () => onLike(dog.id);
 
   return (
@@ -29,9 +30,11 @@ const DogCard: React.FC<DogCardProps> = ({ dog, isLiked, onLike }) => {
                 Age: {dog.age} <br />
                 Breed: {dog.breed}
             </Card.Text>
-            <span onClick={handleLikeClick} style={{ cursor: 'pointer' }}>
+            {showHeart && (
+              <span onClick={handleLikeClick} style={{ cursor: 'pointer' }}>
                 {isLiked ? <MdFavorite style={{ color: 'red' }} /> : <MdFavoriteBorder />}
-            </span>
+              </span>
+            )}
         </Card.Body>
     </Card>
   );

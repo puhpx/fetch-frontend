@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { fetchDogsByIds, getBreeds, searchDogs } from '../api/dog';
 import DogList from '../components/DogList';
 import FavoritesList from '../components/FavoritesList';
+import Match from '../components/Match';
 
 const SearchPage: React.FC = () => {
     const [breeds, setBreeds] = useState<string[]>([]);
@@ -88,7 +89,10 @@ const SearchPage: React.FC = () => {
             </button>
 
             {showFavorites ? (
+              <>
                 <FavoritesList favoriteIds={favorites} />
+                <Match favoriteIds={favorites} />
+              </>
             ) : (
               <>
               <select value={selectedBreed} onChange={handleBreedChange}>
