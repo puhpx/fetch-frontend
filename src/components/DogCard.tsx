@@ -42,6 +42,7 @@ const DogCard: React.FC<DogCardProps> = ({ dog, isLiked, onLike, showHeart = tru
       <Card.Img
         variant="top"
         src={dog.img}
+        alt={dog.name}
         className="img-fluid"
         style={{ height: '200px', objectFit: 'cover' }}
       />
@@ -52,8 +53,8 @@ const DogCard: React.FC<DogCardProps> = ({ dog, isLiked, onLike, showHeart = tru
           Breed: {dog.breed}
         </Card.Text>
         {showHeart && (
-          <span onClick={handleLikeClick} style={{ cursor: 'pointer' }}>
-            {isLiked ? <MdFavorite style={{ color: 'red', fontSize: '30px' }} /> : <MdFavoriteBorder style={{ fontSize: '30px' }} />}
+          <span data-testid="like-button" onClick={handleLikeClick} style={{ cursor: 'pointer' }}>
+            {isLiked ? <MdFavorite data-testid="liked-icon" style={{ color: 'red', fontSize: '30px' }} /> : <MdFavoriteBorder data-testid="not-liked-icon" style={{ fontSize: '30px' }} />}
           </span>
         )}
       </Card.Body>
