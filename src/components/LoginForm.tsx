@@ -6,8 +6,8 @@ interface LoginFormProps {
 }
 
 const LoginForm: React.FC<LoginFormProps> = ({onSubmit}) => {
-  const [name, setName] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
+  const [name, setName] = useState<string>('demo');
+  const [email, setEmail] = useState<string>('demo@fetchrewards.com');
 
   const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
       setName(e.target.value);
