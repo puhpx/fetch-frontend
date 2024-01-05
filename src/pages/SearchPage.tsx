@@ -83,12 +83,8 @@ const SearchPage: React.FC = () => {
       });
     };
 
-
     return (
         <div className="container">
-          <div className="mb-4 mt-4">
-            <img src="/Fetch_Rewards_Logo.jpeg" alt="Fetch Logo" className="logo img-fluid mb-4 w-50" />
-          </div>
           <div className="my-3">
             <button
               className="btn btn-primary btn-lg mt-2 mb-4"
